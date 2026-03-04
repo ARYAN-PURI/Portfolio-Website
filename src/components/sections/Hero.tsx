@@ -91,7 +91,7 @@ const Hero = () => {
                 { icon: Github, href: "https://github.com/ARYAN-PURI/", label: "GitHub" },
                 { icon: Linkedin, href: "https://www.linkedin.com/in/aryan-puri-b5338125a/", label: "LinkedIn" },
                 { icon: Mail, href: "mailto:aryanpuri600@gmail.com", label: "Email" },
-                { icon: Download, href: "/resume.pdf", label: "Resume", download: true }
+                { icon: Download, href: "/Aryan_Puri_Resume.pdf", label: "Resume", download: true }
               ].map((social, index) => (
                 <motion.a
                   key={index}
