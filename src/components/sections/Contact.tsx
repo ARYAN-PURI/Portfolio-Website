@@ -38,13 +38,13 @@ const Contact = () => {
     {
       icon: Github,
       label: "GitHub",
-      href: "https://github.com/aryanpuri600",
+      href: "https://github.com/ARYAN-PURI/",
       color: "hover:text-gray-400"
     },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com/in/aryan-puri-600",
+      href: "https://www.linkedin.com/in/aryan-puri-b5338125a/",
       color: "hover:text-blue-400"
     }
   ];
