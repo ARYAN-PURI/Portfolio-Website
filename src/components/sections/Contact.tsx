@@ -37,13 +37,15 @@ const Contact = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com/aryanpuri600",
-      label: "GitHub"
+      label: "GitHub",
+      href: "https://github.com/ARYAN-PURI/",
+      color: "hover:text-gray-400"
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/aryan-puri-600",
-      label: "LinkedIn"
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/aryan-puri-b5338125a/",
+      color: "hover:text-blue-400"
     }
   ];
 

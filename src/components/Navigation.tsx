@@ -30,12 +30,12 @@ const Navigation = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com/aryanpuri600",
+      href: "https://github.com/ARYAN-PURI/",
       label: "GitHub"
     },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/aryan-puri-600",
+      href: "https://www.linkedin.com/in/aryan-puri-b5338125a/",
       label: "LinkedIn"
     },
     {

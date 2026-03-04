@@ -23,8 +23,8 @@ const Projects = () => {
         { label: "Dataset Size", value: "1444 images" }
       ],
       links: {
-        github: "https://github.com/aryanpuri600/night-to-day-translation",
-        kaggle: "https://kaggle.com/aryanpuri600/night-to-day-translation"
+        github: "https://github.com/ARYAN-PURI/Night-to-Day-Image-Translation-using-IRACycleGAN",
+        kaggle: "https://www.kaggle.com/code/aryanpuri032/night-day-iracycle-gan-multi-dis-cross-attention"
       },
       icon: Brain,
       category: "AI/ML"
@@ -45,8 +45,8 @@ const Projects = () => {
         { label: "Response Time", value: "<100ms" }
       ],
       links: {
-        github: "https://github.com/aryanpuri600/e-crescendo",
-        live: "https://e-crescendo-nith.vercel.app"
+        github: "https://github.com/ARYAN-PURI/E-Crescendo",
+        live: "https://e-crescendo.vercel.app/"
       },
       icon: Code,
       category: "Web Development"
@@ -67,8 +67,8 @@ const Projects = () => {
         { label: "Data Accuracy", value: "99.9%" }
       ],
       links: {
-        github: "https://github.com/aryanpuri600/store-management",
-        live: "https://store-management.vercel.app"
+        github: "https://github.com/ARYAN-PURI/Account",
+        live: "https://account-orpin.vercel.app/"
       },
       icon: Database,
       category: "Full-Stack"
