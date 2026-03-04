@@ -1,7 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 interface ParallaxSectionProps {
   children: React.ReactNode;
@@ -17,36 +16,59 @@ const ParallaxSection = ({
   direction = 'up' 
 }: ParallaxSectionProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start']
-  });
+  const [transform, setTransform] = useState(0);
 
-  const getTransform = () => {
-    switch (direction) {
-      case 'down':
-        return useTransform(scrollYProgress, [0, 1], [0, speed * 100]);
-      case 'left':
-        return useTransform(scrollYProgress, [0, 1], [0, -speed * 100]);
-      case 'right':
-        return useTransform(scrollYProgress, [0, 1], [0, speed * 100]);
-      default:
-        return useTransform(scrollYProgress, [0, 1], [0, -speed * 100]);
-    }
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!ref.current) return;
 
-  const transform = getTransform();
+      const rect = ref.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const elementTop = rect.top;
+      const elementHeight = rect.height;
+
+      // Calculate scroll progress
+      let scrollProgress = 0;
+      if (elementTop < windowHeight && elementTop + elementHeight > 0) {
+        scrollProgress = (windowHeight - elementTop) / (windowHeight + elementHeight);
+      }
+
+      // Calculate transform based on direction and speed
+      let newTransform = 0;
+      switch (direction) {
+        case 'down':
+          newTransform = scrollProgress * speed * 100;
+          break;
+        case 'left':
+          newTransform = -scrollProgress * speed * 100;
+          break;
+        case 'right':
+          newTransform = scrollProgress * speed * 100;
+          break;
+        default: // up
+          newTransform = -scrollProgress * speed * 100;
+      }
+
+      setTransform(newTransform);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [speed, direction]);
 
   return (
     <div ref={ref} className={`relative ${className}`}>
-      <motion.div
+      <div
         style={{
-          [direction === 'left' || direction === 'right' ? 'x' : 'y']: transform,
+          transform: `${direction === 'left' || direction === 'right' ? 'translateX' : 'translateY'}(${transform}px)`,
+          transition: 'transform 0.1s ease-out',
         }}
         className="relative"
       >
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 };

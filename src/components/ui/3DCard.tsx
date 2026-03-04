@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useState, useRef } from 'react';
 
 interface Card3DProps {
@@ -44,7 +43,7 @@ const Card3D = ({ children, className = '', tiltAmount = 15, glareIntensity = 0.
   };
 
   return (
-    <motion.div
+    <div
       ref={cardRef}
       className={`relative transform-gpu ${className}`}
       onMouseMove={handleMouseMove}
@@ -52,20 +51,17 @@ const Card3D = ({ children, className = '', tiltAmount = 15, glareIntensity = 0.
       style={{
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transformStyle: 'preserve-3d',
-      }}
-      whileHover={{
-        scale: 1.02,
-        transition: { duration: 0.2 },
+        transition: 'transform 0.1s ease-out',
       }}
     >
       {/* Glare effect */}
-      <motion.div
+      <div
         className="absolute inset-0 pointer-events-none rounded-xl"
         style={{
           background: `radial-gradient(circle at ${glarePosition.x}% ${glarePosition.y}%, rgba(255,255,255,${glareIntensity}), transparent 50%)`,
           opacity: rotateX !== 0 || rotateY !== 0 ? 1 : 0,
+          transition: 'opacity 0.2s ease',
         }}
-        transition={{ opacity: 0.2 }}
       />
       
       {/* Card content */}
@@ -74,14 +70,14 @@ const Card3D = ({ children, className = '', tiltAmount = 15, glareIntensity = 0.
       </div>
       
       {/* Card shadow */}
-      <motion.div
+      <div
         className="absolute inset-0 rounded-xl bg-black/20 -z-10"
         style={{
           transform: 'translateZ(-50px) scale(0.95)',
           filter: 'blur(20px)',
         }}
       />
-    </motion.div>
+    </div>
   );
 };
 

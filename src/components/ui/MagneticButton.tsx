@@ -1,7 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -15,12 +14,9 @@ interface MagneticButtonProps {
 const MagneticButton = ({ children, className = '', onClick, href, target, rel }: MagneticButtonProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
-  const buttonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!buttonRef.current) return;
-
-    const rect = buttonRef.current.getBoundingClientRect();
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
@@ -39,60 +35,39 @@ const MagneticButton = ({ children, className = '', onClick, href, target, rel }
     setIsHovered(true);
   };
 
-  const MotionComponent = href ? motion.a : motion.button;
-  const motionProps = href ? { href, target, rel } : {};
+  const Component = href ? 'a' : 'button';
+  const componentProps = href ? { href, target, rel } : { type: 'button' as const };
 
   return (
-    <MotionComponent
-      ref={buttonRef}
+    <Component
       className={`relative inline-block ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
       onClick={onClick}
-      animate={{
-        x: mousePosition.x,
-        y: mousePosition.y,
+      style={{
+        transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
+        transition: 'transform 0.1s ease-out',
       }}
-      transition={{
-        type: 'spring',
-        stiffness: 150,
-        damping: 15,
-        mass: 0.1,
-      }}
-      whileHover={{
-        scale: 1.05,
-        boxShadow: isHovered ? '0 20px 40px rgba(168, 85, 247, 0.3)' : '0 10px 20px rgba(168, 85, 247, 0.2)',
-      }}
-      whileTap={{
-        scale: 0.95,
-      }}
-      {...motionProps}
+      {...componentProps}
     >
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0"
-        animate={{
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"
+        style={{
           opacity: isHovered ? 0.1 : 0,
-        }}
-        transition={{
-          duration: 0.3,
+          transition: 'opacity 0.3s ease',
         }}
       />
-      <motion.div
+      <div
         className="relative z-10"
-        animate={{
-          rotateX: mousePosition.y / 10,
-          rotateY: mousePosition.x / 10,
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 300,
-          damping: 30,
+        style={{
+          transform: `rotateX(${mousePosition.y / 10}deg) rotateY(${mousePosition.x / 10}deg)`,
+          transition: 'transform 0.1s ease-out',
         }}
       >
         {children}
-      </motion.div>
-    </MotionComponent>
+      </div>
+    </Component>
   );
 };
 

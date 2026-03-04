@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 const GradientBackground = () => {
@@ -18,73 +17,40 @@ const GradientBackground = () => {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Animated gradient orbs */}
-      <motion.div
-        className="absolute w-96 h-96 rounded-full bg-purple-600 opacity-20 blur-3xl"
-        animate={{
-          x: [0, 100, 0],
-          y: [0, -100, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'easeInOut',
-        }}
+      <div
+        className="absolute w-96 h-96 rounded-full bg-purple-600 opacity-20 blur-3xl animate-float"
         style={{
           left: '10%',
           top: '20%',
+          animation: 'float-orb-1 20s ease-in-out infinite',
         }}
       />
       
-      <motion.div
-        className="absolute w-96 h-96 rounded-full bg-pink-600 opacity-20 blur-3xl"
-        animate={{
-          x: [0, -100, 0],
-          y: [0, 100, 0],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'easeInOut',
-        }}
+      <div
+        className="absolute w-96 h-96 rounded-full bg-pink-600 opacity-20 blur-3xl animate-float"
         style={{
           right: '10%',
           bottom: '20%',
+          animation: 'float-orb-2 25s ease-in-out infinite',
         }}
       />
 
-      <motion.div
-        className="absolute w-96 h-96 rounded-full bg-blue-600 opacity-20 blur-3xl"
-        animate={{
-          x: [0, 150, 0],
-          y: [0, 150, 0],
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'easeInOut',
-        }}
+      <div
+        className="absolute w-96 h-96 rounded-full bg-blue-600 opacity-20 blur-3xl animate-float"
         style={{
           left: '50%',
           top: '50%',
           transform: 'translate(-50%, -50%)',
+          animation: 'float-orb-3 30s ease-in-out infinite',
         }}
       />
 
       {/* Mouse-following gradient */}
-      <motion.div
+      <div
         className="absolute w-64 h-64 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-10 blur-2xl"
-        animate={{
-          x: mousePosition.x - 128,
-          y: mousePosition.y - 128,
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 100,
-          damping: 25,
-          mass: 0.5,
+        style={{
+          transform: `translate(${mousePosition.x - 128}px, ${mousePosition.y - 128}px)`,
+          transition: 'transform 0.1s ease-out',
         }}
       />
 
@@ -100,69 +66,47 @@ const GradientBackground = () => {
           </filter>
         </defs>
         
-        <motion.g
-          animate={{
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 60,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
+        <g
           style={{
             transformOrigin: 'center',
+            animation: 'rotate 60s linear infinite',
           }}
         >
-          <motion.circle
+          <circle
             cx="20%"
             cy="30%"
             r="100"
             fill="url(#gradient1)"
             filter="url(#glow)"
-            animate={{
-              r: [100, 120, 100],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              repeatType: 'reverse',
+            style={{
+              animation: 'pulse-circle-1 4s ease-in-out infinite',
             }}
           />
           
-          <motion.circle
+          <circle
             cx="80%"
             cy="70%"
             r="150"
             fill="url(#gradient2)"
             filter="url(#glow)"
-            animate={{
-              r: [150, 180, 150],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              delay: 1,
+            style={{
+              animation: 'pulse-circle-2 5s ease-in-out infinite',
+              animationDelay: '1s',
             }}
           />
           
-          <motion.circle
+          <circle
             cx="50%"
             cy="50%"
             r="80"
             fill="url(#gradient3)"
             filter="url(#glow)"
-            animate={{
-              r: [80, 100, 80],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              delay: 2,
+            style={{
+              animation: 'pulse-circle-3 3s ease-in-out infinite',
+              animationDelay: '2s',
             }}
           />
-        </motion.g>
+        </g>
 
         <defs>
           <radialGradient id="gradient1">

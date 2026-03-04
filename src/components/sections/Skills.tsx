@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Code, Database, Globe, Cpu, Brain, Server } from 'lucide-react';
 
 const Skills = () => {
@@ -56,13 +55,7 @@ const Skills = () => {
   return (
     <section id="skills" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-slate-900 to-purple-900/20">
       <div className="container mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
-        >
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             Technical <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Skills</span>
           </h2>
@@ -70,17 +63,14 @@ const Skills = () => {
           <p className="text-gray-300 mt-4 sm:mt-6 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Comprehensive skill set spanning AI/ML, Full-Stack Development, and Infrastructure Technologies
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div
+            <div
               key={categoryIndex}
-              initial={{ opacity: 0, x: categoryIndex % 2 === 0 ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300"
+              className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 animate-fade-in-delay-200"
+              style={{ animationDelay: `${categoryIndex * 0.2}s` }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
@@ -91,69 +81,49 @@ const Skills = () => {
               
               <div className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div
+                  <div
                     key={skillIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: skillIndex * 0.1 }}
-                    viewport={{ once: true }}
+                    className="animate-fade-in-delay"
+                    style={{ animationDelay: `${skillIndex * 0.1}s` }}
                   >
                     <div className="flex justify-between items-center mb-1">
                       <span className="text-purple-300 font-medium text-sm">{skill.name}</span>
                       <span className="text-purple-400 text-xs">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-purple-900/30 rounded-full h-1.5 overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                        viewport={{ once: true }}
-                        className={`h-full bg-gradient-to-r ${skill.color} rounded-full`}
-                      ></motion.div>
+                      <div
+                        className={`h-full bg-gradient-to-r ${skill.color} rounded-full animate-fade-in-delay`}
+                        style={{ width: `${skill.level}%`, animationDelay: `${skillIndex * 0.1}s` }}
+                      ></div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-purple-500/20"
-        >
+        <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-purple-500/20 animate-fade-in-delay-600">
           <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center">Additional Skills</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 sm:gap-3">
             {additionalSkills.map((skill, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="text-center px-2 sm:px-3 py-1.5 sm:py-2 bg-purple-800/30 rounded-lg border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-105"
+                className="text-center px-2 sm:px-3 py-1.5 sm:py-2 bg-purple-800/30 rounded-lg border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-105 animate-fade-in-delay"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
                 <span className="text-purple-300 text-xs sm:text-sm">{skill}</span>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          viewport={{ once: true }}
-          className="mt-8 sm:mt-12 text-center"
-        >
+        <div className="mt-8 sm:mt-12 text-center animate-fade-in-delay-600">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-purple-900/50 to-pink-900/20 rounded-full border border-purple-500/20">
             <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
             <span className="text-purple-300 text-xs sm:text-sm">Continuously learning and expanding skill set</span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

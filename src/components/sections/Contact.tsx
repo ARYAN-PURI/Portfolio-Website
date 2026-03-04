@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
 import { useState } from 'react';
 
@@ -87,13 +86,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-purple-900/20 to-slate-900">
       <div className="container mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
-        >
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             Get In <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Touch</span>
           </h2>
@@ -101,16 +94,10 @@ const Contact = () => {
           <p className="text-gray-300 mt-4 sm:mt-6 max-w-2xl mx-auto text-sm sm:text-base px-4">
             Feel free to reach out for collaborations, opportunities, or just to say hello!
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
+          <div className="space-y-6 animate-fade-in-delay-200">
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Let's Connect</h3>
               <p className="text-gray-300 leading-relaxed mb-6 text-sm sm:text-base">
@@ -121,13 +108,10 @@ const Contact = () => {
 
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/10 rounded-lg sm:rounded-xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300"
+                  className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/10 rounded-lg sm:rounded-xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 animate-fade-in-delay-400"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
                     <info.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
@@ -145,7 +129,7 @@ const Contact = () => {
                       <div className="text-white font-medium text-sm sm:text-base truncate">{info.value}</div>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -153,46 +137,34 @@ const Contact = () => {
               <h4 className="text-lg font-semibold text-white mb-3 sm:mb-4">Follow Me</h4>
               <div className="flex gap-3 sm:gap-4">
                 {socialLinks.map((social, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-900/30 rounded-full flex items-center justify-center border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-110"
+                    className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-900/30 rounded-full flex items-center justify-center border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-110 animate-fade-in-delay-600"
+                    style={{ animationDelay: `${index * 0.1}s` }}
                     aria-label={social.label}
                   >
                     <social.icon className="w-5 h-5 sm:w-6 sm:h-6 text-purple-300 hover:text-white transition-colors duration-300" />
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div className="animate-fade-in-delay-400">
             <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-purple-500/20">
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Send Me a Message</h3>
               
               {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-6 sm:py-8"
-                >
+                <div className="text-center py-6 sm:py-8 animate-fade-in">
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Send className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
                   <h4 className="text-lg sm:text-xl font-semibold text-white mb-2">Message Sent!</h4>
                   <p className="text-gray-300 text-sm sm:text-base">Thank you for reaching out. I'll get back to you soon.</p>
-                </motion.div>
+                </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div>
@@ -243,11 +215,9 @@ const Contact = () => {
                     />
                   </div>
 
-                  <motion.button
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
                     className="w-full py-2 sm:py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base"
                   >
                     {isSubmitting ? (
@@ -261,25 +231,19 @@ const Contact = () => {
                         Send Message
                       </>
                     )}
-                  </motion.button>
+                  </button>
                 </form>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
+        <div className="text-center mt-12 animate-fade-in-delay-600">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-purple-900/50 to-pink-900/20 rounded-full border border-purple-500/20">
             <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
             <span className="text-purple-300 text-xs sm:text-sm">Available for freelance and full-time opportunities</span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

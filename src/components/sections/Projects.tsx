@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Github, ExternalLink, Code, Database, Brain } from 'lucide-react';
 import Card3D from '@/components/ui/3DCard';
 import AnimatedText from '@/components/ui/AnimatedText';
@@ -91,13 +90,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-purple-900/20 to-slate-900">
       <div className="container mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12 sm:mb-16"
-        >
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Projects</span>
           </h2>
@@ -109,17 +102,14 @@ const Projects = () => {
               delay={0.3}
             />
           </p>
-        </motion.div>
+        </div>
 
         <div className="space-y-8 sm:space-y-12">
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="relative"
+              className="relative animate-fade-in-delay-400"
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
               <Card3D className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300">
                 <div className="flex flex-col gap-6">
@@ -141,16 +131,13 @@ const Projects = () => {
                       
                       <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
                         {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                          <motion.span
+                          <span
                             key={techIndex}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3, delay: techIndex * 0.05 }}
-                            viewport={{ once: true }}
-                            className="px-2 py-1 sm:px-3 sm:py-1 bg-purple-800/50 text-purple-200 rounded-full text-xs sm:text-sm border border-purple-500/20"
+                            className="px-2 py-1 sm:px-3 sm:py-1 bg-purple-800/50 text-purple-200 rounded-full text-xs sm:text-sm border border-purple-500/20 animate-fade-in-delay"
+                            style={{ animationDelay: `${techIndex * 0.05}s` }}
                           >
                             {tech}
-                          </motion.span>
+                          </span>
                         ))}
                         {project.technologies.length > 4 && (
                           <span className="px-2 py-1 sm:px-3 sm:py-1 bg-purple-800/50 text-purple-200 rounded-full text-xs sm:text-sm border border-purple-500/20">
@@ -161,43 +148,37 @@ const Projects = () => {
 
                       <div className="flex flex-wrap gap-2 sm:gap-3">
                         {project.links.github && (
-                          <motion.a
+                          <a
                             href={project.links.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-purple-800/50 text-purple-200 rounded-lg hover:bg-purple-700/50 transition-colors duration-300 text-xs sm:text-sm"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-purple-800/50 text-purple-200 rounded-lg hover:bg-purple-700/50 transition-colors duration-300 text-xs sm:text-sm hover:scale-105"
                           >
                             <Github className="w-3 h-3 sm:w-4 sm:h-4" />
                             <span>Code</span>
-                          </motion.a>
+                          </a>
                         )}
                         {project.links.live && (
-                          <motion.a
+                          <a
                             href={project.links.live}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-xs sm:text-sm"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-xs sm:text-sm hover:scale-105"
                           >
                             <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
                             <span>Live</span>
-                          </motion.a>
+                          </a>
                         )}
                         {project.links.kaggle && (
-                          <motion.a
+                          <a
                             href={project.links.kaggle}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-800/50 text-blue-200 rounded-lg hover:bg-blue-700/50 transition-colors duration-300 text-xs sm:text-sm"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-800/50 text-blue-200 rounded-lg hover:bg-blue-700/50 transition-colors duration-300 text-xs sm:text-sm hover:scale-105"
                           >
                             <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
                             <span>Kaggle</span>
-                          </motion.a>
+                          </a>
                         )}
                       </div>
                     </div>
@@ -208,17 +189,14 @@ const Projects = () => {
                       <h4 className="text-sm sm:text-base font-semibold text-white mb-2">Key Features</h4>
                       <div className="space-y-1 sm:space-y-2">
                         {project.features.slice(0, 2).map((feature, featureIndex) => (
-                          <motion.div
+                          <div
                             key={featureIndex}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: featureIndex * 0.1 }}
-                            viewport={{ once: true }}
-                            className="flex items-start gap-2"
+                            className="flex items-start gap-2 animate-fade-in-delay"
+                            style={{ animationDelay: `${featureIndex * 0.1}s` }}
                           >
                             <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-400 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
                             <span className="text-gray-300 text-xs sm:text-sm leading-relaxed">{feature}</span>
-                          </motion.div>
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -227,39 +205,30 @@ const Projects = () => {
                       <h4 className="text-sm sm:text-base font-semibold text-white mb-2">Performance</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         {project.metrics.slice(0, 3).map((metric, metricIndex) => (
-                          <motion.div
+                          <div
                             key={metricIndex}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.3, delay: metricIndex * 0.1 }}
-                            viewport={{ once: true }}
-                            className="bg-gradient-to-r from-purple-800/30 to-pink-800/10 p-2 sm:p-3 rounded-lg border border-purple-500/20 text-center"
+                            className="bg-gradient-to-r from-purple-800/30 to-pink-800/10 p-2 sm:p-3 rounded-lg border border-purple-500/20 text-center animate-fade-in-delay"
+                            style={{ animationDelay: `${metricIndex * 0.1}s` }}
                           >
                             <div className="text-sm sm:text-lg md:text-2xl font-bold text-white mb-0.5">{metric.value}</div>
                             <div className="text-xs sm:text-sm text-purple-300">{metric.label}</div>
-                          </motion.div>
+                          </div>
                         ))}
                       </div>
                     </div>
                   </div>
                 </div>
               </Card3D>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
+        <div className="text-center mt-12 animate-fade-in-delay-600">
           <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-purple-900/50 to-pink-900/20 rounded-full border border-purple-500/20">
             <Github className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
             <span className="text-purple-300 text-xs sm:text-sm">More projects on GitHub</span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
