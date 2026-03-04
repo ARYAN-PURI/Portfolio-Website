@@ -28,7 +28,7 @@ const Hero = () => {
               <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-3 sm:mb-4">
                 <AnimatedText 
                   text="Aryan Puri" 
-                  className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
+                  className="text-white drop-shadow-lg"
                   type="letters"
                   delay={0.2}
                 />
