@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aryan Puri - Professional Portfolio
 
-## Getting Started
+A modern, creative, and engaging single-page portfolio website built with Next.js, TypeScript, and Tailwind CSS. This portfolio showcases my skills, projects, education, and professional experience as a Computer Science Engineering student at NIT Hamirpur.
 
-First, run the development server:
+## 🚀 Features
 
+- **Modern Design**: Creative and engaging UI with gradient backgrounds and smooth animations
+- **Responsive Layout**: Fully responsive design that works seamlessly on all devices
+- **Interactive Elements**: Smooth scrolling, hover effects, and micro-interactions
+- **Performance Optimized**: Built with Next.js for optimal performance and SEO
+- **Accessible**: Semantic HTML5 structure with accessibility in mind
+- **Single Page Application**: All sections in one page with smooth navigation
+
+## 📋 Sections
+
+- **Hero**: Eye-catching introduction with name, title, and call-to-action buttons
+- **About**: Personal introduction with key statistics and achievements
+- **Education**: Academic background including NIT Hamirpur and previous education
+- **Experience**: Professional experience including DELL Technologies internship
+- **Projects**: Featured projects with detailed descriptions and technologies used
+- **Skills**: Technical skills visualization with progress bars and categories
+- **Contact**: Contact form and professional contact information
+
+## 🛠️ Technologies Used
+
+- **Frontend**: Next.js 16, React 18, TypeScript
+- **Styling**: Tailwind CSS, CSS3 Animations
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Development**: ESLint, Prettier
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/aryanpuri600/portfolio.git
+cd portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Learn More
+## 🚀 Deployment
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
+### Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Deploy on Other Platforms
+
+```bash
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── src/
+│   ├── app/
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   └── components/
+│       ├── Navigation.tsx
+│       ├── Footer.tsx
+│       └── sections/
+│           ├── Hero.tsx
+│           ├── About.tsx
+│           ├── Education.tsx
+│           ├── Experience.tsx
+│           ├── Projects.tsx
+│           ├── Skills.tsx
+│           └── Contact.tsx
+├── public/
+├── package.json
+└── README.md
+```
+
+## 🎨 Customization
+
+### Personal Information
+
+Update your personal information in the respective component files:
+
+- **Hero**: Update name, title, and social links
+- **Contact**: Update email, phone, and social media profiles
+- **Education**: Update academic details and achievements
+- **Experience**: Update work experience and responsibilities
+- **Projects**: Update project details and links
+- **Skills**: Update technical skills and proficiency levels
+
+### Styling
+
+The portfolio uses Tailwind CSS with a custom color scheme. You can customize the colors by modifying the Tailwind configuration or the CSS variables in `globals.css`.
+
+### Animations
+
+Animations are powered by Framer Motion. You can adjust animation timing and effects in each component file.
+
+## 🤝 Contributing
+
+This is a personal portfolio project. For suggestions or improvements, feel free to create an issue or submit a pull request.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 📞 Contact
+
+- **Email**: aryanpuri600@gmail.com
+- **Phone**: +91-9882407374
+- **LinkedIn**: [linkedin.com/in/aryan-puri-600](https://linkedin.com/in/aryan-puri-600)
+- **GitHub**: [github.com/aryanpuri600](https://github.com/aryanpuri600)
+
+---
+
+Built with ❤️ using Next.js and Tailwind CSS
