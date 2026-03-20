@@ -1,15 +1,20 @@
 'use client';
 
 import { GraduationCap, Award, Calendar, MapPin } from 'lucide-react';
+import { useInView } from '@/hooks/useInView';
 
 const Education = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useInView();
+  const { ref: listRef, isVisible: listVisible } = useInView();
+  const { ref: coursesRef, isVisible: coursesVisible } = useInView();
+
   const education = [
     {
-      degree: "Bachelor of Technology in Computer Science and Engineering",
+      degree: "B.Tech in Computer Science and Engineering",
       institution: "National Institute of Technology, Hamirpur",
       period: "2022 - 2026",
-      location: "Hamirpur, Himachal Pradesh",
-      cgpa: "9.96",
+      location: "Hamirpur, HP",
+      score: "CGPA: 9.96",
       achievements: ["Batch Topper", "Dean's List", "Academic Excellence Award"],
       icon: GraduationCap
     },
@@ -17,9 +22,8 @@ const Education = () => {
       degree: "Senior Secondary (12th Grade)",
       institution: "G.S.S.S. Dhusara",
       period: "2020 - 2022",
-      location: "Una, Himachal Pradesh",
-      percentage: "98.4%",
-      board: "HPBOSE",
+      location: "Una, HP",
+      score: "98.4% (HPBOSE)",
       achievements: ["District Topper", "Science Stream"],
       icon: Award
     },
@@ -27,106 +31,91 @@ const Education = () => {
       degree: "Matriculation (10th Grade)",
       institution: "JJPHS Dhusara",
       period: "2018 - 2020",
-      location: "Una, Himachal Pradesh",
-      percentage: "94.57%",
-      board: "HPBOSE",
+      location: "Una, HP",
+      score: "94.57% (HPBOSE)",
       achievements: ["School Topper"],
       icon: Award
     }
   ];
 
   const keyCourses = [
-    "Data Structures & Algorithms",
-    "Artificial Intelligence",
-    "Neural Networks & Fuzzy Logic",
-    "Computer Vision",
-    "Database Management Systems",
-    "Computer Networks",
-    "Operating Systems",
-    "Software Engineering",
-    "Distributed Systems",
-    "Information Security"
+    "Data Structures & Algorithms", "Artificial Intelligence", "Neural Networks & Fuzzy Logic",
+    "Computer Vision", "Database Management Systems", "Computer Networks",
+    "Operating Systems", "Software Engineering", "Distributed Systems", "Information Security"
   ];
 
   return (
-    <section id="education" className="py-20 bg-gradient-to-b from-purple-900/20 to-slate-900">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Education <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Journey</span>
+    <section id="education" className="py-24 relative">
+      <div className="section-divider" />
+      <div className="max-w-6xl mx-auto px-6 pt-12">
+        {/* Header */}
+        <div ref={headerRef} className={`text-center mb-16 reveal ${headerVisible ? 'visible' : ''}`}>
+          <p className="text-sm font-medium tracking-widest uppercase text-violet-400 mb-3">Education</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+            Academic <span className="gradient-text">Journey</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-600 mx-auto"></div>
+          <div className="w-16 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full" />
         </div>
 
-        <div className="space-y-8 mb-16">
+        {/* Timeline */}
+        <div ref={listRef} className={`relative max-w-3xl mx-auto mb-16 stagger-children ${listVisible ? 'visible' : ''}`}>
+          {/* Vertical line */}
+          <div className="absolute left-6 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/30 via-violet-500/10 to-transparent" />
+
           {education.map((edu, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-8 rounded-2xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 animate-fade-in-delay-200"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
-                    <edu.icon className="w-8 h-8 text-white" />
+            <div key={index} className="relative pl-16 md:pl-20 pb-12 last:pb-0">
+              {/* Timeline dot */}
+              <div className="absolute left-3 md:left-5 top-1 w-6 h-6 md:w-6 md:h-6 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center ring-4 ring-[#060918]">
+                <edu.icon className="w-3 h-3 text-white" />
+              </div>
+
+              <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] card-hover">
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  <span className="px-3 py-1 text-xs font-medium bg-violet-500/10 text-violet-300 rounded-full border border-violet-500/10">
+                    {edu.score}
+                  </span>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                    <Calendar className="w-3 h-3" />
+                    <span>{edu.period}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                    <MapPin className="w-3 h-3" />
+                    <span>{edu.location}</span>
                   </div>
                 </div>
-                <div className="flex-grow">
-                  <h3 className="text-2xl font-bold text-white mb-2">{edu.degree}</h3>
-                  <div className="flex flex-wrap gap-4 text-purple-300 mb-4">
-                    <div className="flex items-center gap-2">
-                      <GraduationCap className="w-4 h-4" />
-                      <span>{edu.institution}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      <span>{edu.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      <span>{edu.period}</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {(edu.cgpa || edu.percentage) && (
-                      <span className="px-3 py-1 bg-purple-800/50 text-purple-200 rounded-full text-sm">
-                        {edu.cgpa ? `CGPA: ${edu.cgpa}` : `Percentage: ${edu.percentage}`}
-                      </span>
-                    )}
-                    {edu.board && (
-                      <span className="px-3 py-1 bg-purple-800/50 text-purple-200 rounded-full text-sm">
-                        {edu.board}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {edu.achievements.map((achievement, achIndex) => (
-                      <span
-                        key={achIndex}
-                        className="px-3 py-1 bg-gradient-to-r from-purple-600/20 to-pink-600/20 text-purple-300 rounded-full text-sm border border-purple-500/20"
-                      >
-                        {achievement}
-                      </span>
-                    ))}
-                  </div>
+
+                <h3 className="text-lg font-semibold text-white mb-1">{edu.degree}</h3>
+                <p className="text-sm text-slate-400 mb-4">{edu.institution}</p>
+
+                <div className="flex flex-wrap gap-2">
+                  {edu.achievements.map((achievement, i) => (
+                    <span
+                      key={i}
+                      className="px-2.5 py-1 text-xs bg-white/[0.04] text-slate-400 rounded-lg border border-white/[0.06]"
+                    >
+                      {achievement}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-8 rounded-2xl border border-purple-500/20 animate-fade-in-delay-600">
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">Key Coursework</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-            {keyCourses.map((course, index) => (
-              <div
-                key={index}
-                className="text-center px-3 py-2 bg-purple-800/30 rounded-lg border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-105 animate-fade-in-delay"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <span className="text-purple-300 text-sm">{course}</span>
-              </div>
-            ))}
+        {/* Key Coursework */}
+        <div ref={coursesRef} className={`reveal ${coursesVisible ? 'visible' : ''}`}>
+          <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
+            <h3 className="text-lg font-semibold text-white mb-6 text-center">Key Coursework</h3>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {keyCourses.map((course, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1.5 text-sm bg-white/[0.04] text-slate-400 rounded-lg border border-white/[0.06] hover:border-violet-500/20 hover:text-slate-300 transition-all duration-300"
+                >
+                  {course}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

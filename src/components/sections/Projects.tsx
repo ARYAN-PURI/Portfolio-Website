@@ -1,15 +1,16 @@
 'use client';
 
 import { Github, ExternalLink, Code, Database, Brain } from 'lucide-react';
-import Card3D from '@/components/ui/3DCard';
-import AnimatedText from '@/components/ui/AnimatedText';
+import { useInView } from '@/hooks/useInView';
 
 const Projects = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useInView();
+  const { ref: projectsRef, isVisible: projectsVisible } = useInView(0.05);
+
   const projects = [
     {
       title: "Night-to-Day Image Translation",
       description: "Enhanced IRA-CycleGAN model for improved realism in low-light scenes using cross-attention fusion and multi-discriminator architecture.",
-      image: "/projects/autonomous-vehicles.jpg",
       technologies: ["Python", "PyTorch", "Computer Vision", "GAN", "OpenCV"],
       features: [
         "Trained on MSRS dataset with 1444 day/night images",
@@ -19,19 +20,19 @@ const Projects = () => {
       metrics: [
         { label: "FID Score", value: "150.92" },
         { label: "KID Score", value: "0.036" },
-        { label: "Dataset Size", value: "1444 images" }
+        { label: "Dataset", value: "1444 imgs" }
       ],
       links: {
         github: "https://github.com/ARYAN-PURI/Night-to-Day-Image-Translation-using-IRACycleGAN",
         kaggle: "https://www.kaggle.com/code/aryanpuri032/night-day-iracycle-gan-multi-dis-cross-attention"
       },
       icon: Brain,
-      category: "AI/ML"
+      category: "AI/ML",
+      accent: "from-blue-500 to-violet-500"
     },
     {
       title: "E-Crescendo 2K25 Event Registration",
       description: "Official event registration portal for E-Cell NIT Hamirpur with comprehensive form submission system and real-time event management.",
-      image: "/projects/e-crescendo.jpg",
       technologies: ["Next.js", "Tailwind CSS", "MongoDB", "React", "Node.js"],
       features: [
         "Team leader registration and management system",
@@ -39,21 +40,21 @@ const Projects = () => {
         "Admin panel for participant database management"
       ],
       metrics: [
-        { label: "Events Managed", value: "15+" },
+        { label: "Events", value: "15+" },
         { label: "Registrations", value: "500+" },
-        { label: "Response Time", value: "<100ms" }
+        { label: "Response", value: "<100ms" }
       ],
       links: {
         github: "https://github.com/ARYAN-PURI/E-Crescendo",
         live: "https://e-crescendo.vercel.app/"
       },
       icon: Code,
-      category: "Web Development"
+      category: "Web Dev",
+      accent: "from-emerald-500 to-teal-500"
     },
     {
       title: "Store Sales Management System",
       description: "Web application for tracking daily sales, cash management, purchase history, and customer analytics with automated reporting.",
-      image: "/projects/store-management.jpg",
       technologies: ["Next.js", "Tailwind CSS", "MongoDB", "Express.js"],
       features: [
         "Daily sales tracking and reporting",
@@ -61,173 +62,143 @@ const Projects = () => {
         "Automated daily sales report generation"
       ],
       metrics: [
-        { label: "Daily Transactions", value: "100+" },
-        { label: "Report Generation", value: "Automated" },
-        { label: "Data Accuracy", value: "99.9%" }
+        { label: "Transactions", value: "100+/day" },
+        { label: "Reports", value: "Automated" },
+        { label: "Accuracy", value: "99.9%" }
       ],
       links: {
         github: "https://github.com/ARYAN-PURI/Account",
         live: "https://account-orpin.vercel.app/"
       },
       icon: Database,
-      category: "Full-Stack"
+      category: "Full-Stack",
+      accent: "from-amber-500 to-orange-500"
     }
   ];
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "AI/ML":
-        return "from-blue-600 to-purple-600";
-      case "Web Development":
-        return "from-green-600 to-teal-600";
-      case "Full-Stack":
-        return "from-orange-600 to-red-600";
-      default:
-        return "from-purple-600 to-pink-600";
-    }
-  };
-
   return (
-    <section id="projects" className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-purple-900/20 to-slate-900">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+    <section id="projects" className="py-24 relative">
+      <div className="section-divider" />
+      <div className="max-w-6xl mx-auto px-6 pt-12">
+        {/* Header */}
+        <div ref={headerRef} className={`text-center mb-16 reveal ${headerVisible ? 'visible' : ''}`}>
+          <p className="text-sm font-medium tracking-widest uppercase text-violet-400 mb-3">Projects</p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-            Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Projects</span>
+            Featured <span className="gradient-text">Work</span>
           </h2>
-          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-600 mx-auto"></div>
-          <p className="text-gray-300 mt-4 sm:mt-6 max-w-2xl mx-auto text-sm sm:text-base px-4">
-            <AnimatedText 
-              text="Explore my diverse portfolio spanning AI/ML, Web Development, and Full-Stack applications"
-              type="words"
-              delay={0.3}
-            />
+          <div className="w-16 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full" />
+          <p className="text-slate-400 mt-6 max-w-xl mx-auto text-sm sm:text-base">
+            A selection of projects spanning AI/ML, Web Development, and Full-Stack applications
           </p>
         </div>
 
-        <div className="space-y-8 sm:space-y-12">
+        {/* Project cards */}
+        <div ref={projectsRef} className={`space-y-6 stagger-children ${projectsVisible ? 'visible' : ''}`}>
           {projects.map((project, index) => (
             <div
               key={index}
-              className="relative animate-fade-in-delay-400"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="group p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] card-hover"
             >
-              <Card3D className="bg-gradient-to-r from-purple-900/30 to-pink-900/10 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300">
-                <div className="flex flex-col gap-6">
-                  <div className="flex flex-col sm:flex-row gap-4 items-start">
-                    <div className="w-full sm:w-24 h-32 sm:h-48 flex-shrink-0">
-                      <div className={`w-full h-full bg-gradient-to-br ${getCategoryColor(project.category)} rounded-lg sm:rounded-xl flex items-center justify-center`}>
-                        <project.icon className="w-8 h-8 sm:w-16 sm:h-16 text-white" />
-                      </div>
-                      <div className="absolute top-2 sm:top-4 right-2 sm:right-4">
-                        <span className={`px-2 py-1 sm:px-3 sm:py-1 bg-gradient-to-r ${getCategoryColor(project.category)} text-white text-xs rounded-full`}>
-                          {project.category}
-                        </span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex-grow">
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">{project.description}</p>
-                      
-                      <div className="flex flex-wrap gap-1 sm:gap-2 mb-4">
-                        {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-1 sm:px-3 sm:py-1 bg-purple-800/50 text-purple-200 rounded-full text-xs sm:text-sm border border-purple-500/20 animate-fade-in-delay"
-                            style={{ animationDelay: `${techIndex * 0.05}s` }}
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.technologies.length > 4 && (
-                          <span className="px-2 py-1 sm:px-3 sm:py-1 bg-purple-800/50 text-purple-200 rounded-full text-xs sm:text-sm border border-purple-500/20">
-                            +{project.technologies.length - 4}
-                          </span>
-                        )}
-                      </div>
+              <div className="flex flex-col lg:flex-row gap-6">
+                {/* Left: Icon + Meta */}
+                <div className="flex flex-row lg:flex-col items-center lg:items-start gap-4 lg:w-28 flex-shrink-0">
+                  <div className={`w-14 h-14 bg-gradient-to-br ${project.accent} rounded-2xl flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity duration-300`}>
+                    <project.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <span className={`px-2.5 py-1 text-xs font-medium bg-gradient-to-r ${project.accent} text-white rounded-full opacity-80`}>
+                    {project.category}
+                  </span>
+                </div>
 
-                      <div className="flex flex-wrap gap-2 sm:gap-3">
-                        {project.links.github && (
-                          <a
-                            href={project.links.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-purple-800/50 text-purple-200 rounded-lg hover:bg-purple-700/50 transition-colors duration-300 text-xs sm:text-sm hover:scale-105"
-                          >
-                            <Github className="w-3 h-3 sm:w-4 sm:h-4" />
-                            <span>Code</span>
-                          </a>
-                        )}
-                        {project.links.live && (
-                          <a
-                            href={project.links.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-xs sm:text-sm hover:scale-105"
-                          >
-                            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-                            <span>Live</span>
-                          </a>
-                        )}
-                        {project.links.kaggle && (
-                          <a
-                            href={project.links.kaggle}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-800/50 text-blue-200 rounded-lg hover:bg-blue-700/50 transition-colors duration-300 text-xs sm:text-sm hover:scale-105"
-                          >
-                            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-                            <span>Kaggle</span>
-                          </a>
-                        )}
-                      </div>
+                {/* Right: Content */}
+                <div className="flex-grow min-w-0">
+                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-violet-200 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">{project.description}</p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.technologies.map((tech, i) => (
+                      <span key={i} className="px-2.5 py-1 text-xs bg-white/[0.04] text-slate-400 rounded-lg border border-white/[0.06]">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Features + Metrics row */}
+                  <div className="grid sm:grid-cols-2 gap-6 mb-5">
+                    <div>
+                      <h4 className="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Key Features</h4>
+                      <ul className="space-y-1.5">
+                        {project.features.map((f, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="w-1 h-1 rounded-full bg-violet-500 mt-2 flex-shrink-0" />
+                            <span className="text-xs text-slate-400 leading-relaxed">{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2">
+                      {project.metrics.map((m, i) => (
+                        <div key={i} className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.04] text-center">
+                          <div className="text-base font-bold text-white">{m.value}</div>
+                          <div className="text-[10px] text-slate-500 mt-0.5">{m.label}</div>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-white mb-2">Key Features</h4>
-                      <div className="space-y-1 sm:space-y-2">
-                        {project.features.slice(0, 2).map((feature, featureIndex) => (
-                          <div
-                            key={featureIndex}
-                            className="flex items-start gap-2 animate-fade-in-delay"
-                            style={{ animationDelay: `${featureIndex * 0.1}s` }}
-                          >
-                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-400 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
-                            <span className="text-gray-300 text-xs sm:text-sm leading-relaxed">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-white mb-2">Performance</h4>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        {project.metrics.slice(0, 3).map((metric, metricIndex) => (
-                          <div
-                            key={metricIndex}
-                            className="bg-gradient-to-r from-purple-800/30 to-pink-800/10 p-2 sm:p-3 rounded-lg border border-purple-500/20 text-center animate-fade-in-delay"
-                            style={{ animationDelay: `${metricIndex * 0.1}s` }}
-                          >
-                            <div className="text-sm sm:text-lg md:text-2xl font-bold text-white mb-0.5">{metric.value}</div>
-                            <div className="text-xs sm:text-sm text-purple-300">{metric.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                  {/* Links */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.links.github && (
+                      <a
+                        href={project.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium bg-white/[0.05] text-slate-300 rounded-lg border border-white/[0.08] hover:bg-white/[0.1] hover:text-white transition-all duration-300"
+                      >
+                        <Github className="w-3.5 h-3.5" /> Code
+                      </a>
+                    )}
+                    {project.links.live && (
+                      <a
+                        href={project.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-lg hover:shadow-lg hover:shadow-violet-500/20 transition-all duration-300"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" /> Live Demo
+                      </a>
+                    )}
+                    {project.links.kaggle && (
+                      <a
+                        href={project.links.kaggle}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded-lg border border-blue-500/10 hover:bg-blue-500/20 transition-all duration-300"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" /> Kaggle
+                      </a>
+                    )}
                   </div>
                 </div>
-              </Card3D>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12 animate-fade-in-delay-600">
-          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-purple-900/50 to-pink-900/20 rounded-full border border-purple-500/20">
-            <Github className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" />
-            <span className="text-purple-300 text-xs sm:text-sm">More projects on GitHub</span>
-          </div>
+        {/* Bottom badge */}
+        <div className="text-center mt-12">
+          <a
+            href="https://github.com/ARYAN-PURI/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] text-sm text-slate-400 hover:text-white hover:border-white/10 transition-all duration-300"
+          >
+            <Github className="w-4 h-4 text-violet-400" />
+            More projects on GitHub
+          </a>
         </div>
       </div>
     </section>

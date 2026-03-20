@@ -1,24 +1,12 @@
 'use client';
 
-import { Github, Linkedin, Mail, Heart, Code } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
   const socialLinks = [
-    {
-      icon: Github,
-      href: "https://github.com/ARYAN-PURI/",
-      label: "GitHub"
-    },
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/aryan-puri-b5338125a/",
-      label: "LinkedIn"
-    },
-    {
-      icon: Mail,
-      href: "mailto:aryanpuri600@gmail.com",
-      label: "Email"
-    }
+    { icon: Github, href: "https://github.com/ARYAN-PURI/", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/aryan-puri-b5338125a/", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:aryanpuri600@gmail.com", label: "Email" }
   ];
 
   const quickLinks = [
@@ -36,47 +24,49 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-slate-900 to-black border-t border-purple-500/20">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="animate-fade-in">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold">AP</span>
+    <footer className="relative border-t border-white/[0.06]">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                AP
               </div>
               <div>
-                <h3 className="text-white font-bold text-lg">Aryan Puri</h3>
-                <p className="text-purple-300 text-sm">Computer Science Engineer</p>
+                <div className="text-white font-semibold">Aryan Puri</div>
+                <div className="text-xs text-slate-500">Computer Science Engineer</div>
               </div>
             </div>
-            <p className="text-gray-400 leading-relaxed mb-6">
-              Passionate about building innovative solutions at the intersection of AI/ML, 
+            <p className="text-sm text-slate-500 leading-relaxed mb-5">
+              Passionate about building innovative solutions at the intersection of AI/ML,
               Computer Vision, and Full-Stack Development.
             </p>
-            <div className="flex gap-3">
-              {socialLinks.map((social, index) => (
+            <div className="flex gap-2">
+              {socialLinks.map((social) => (
                 <a
-                  key={index}
+                  key={social.label}
                   href={social.href}
                   target={social.label !== "Email" ? "_blank" : undefined}
                   rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
-                  className="w-10 h-10 bg-purple-900/30 rounded-full flex items-center justify-center border border-purple-500/20 hover:border-purple-400/40 transition-all duration-300 hover:scale-110"
+                  className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.08] transition-all duration-300"
                   aria-label={social.label}
                 >
-                  <social.icon className="w-5 h-5 text-purple-300 hover:text-white transition-colors duration-300" />
+                  <social.icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="animate-fade-in-delay-200">
-            <h4 className="text-white font-bold text-lg mb-4">Quick Links</h4>
-            <div className="space-y-3">
-              {quickLinks.map((link, index) => (
+          {/* Quick links */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4">Quick Links</h4>
+            <div className="space-y-2.5">
+              {quickLinks.map((link) => (
                 <button
-                  key={index}
+                  key={link.name}
                   onClick={() => handleNavClick(link.href)}
-                  className="block text-purple-300 hover:text-white transition-colors duration-300 text-left"
+                  className="block text-sm text-slate-500 hover:text-white transition-colors duration-300"
                 >
                   {link.name}
                 </button>
@@ -84,48 +74,32 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="animate-fade-in-delay-400">
-            <h4 className="text-white font-bold text-lg mb-4">Contact Info</h4>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-purple-400" />
-                <a
-                  href="mailto:aryanpuri600@gmail.com"
-                  className="text-purple-300 hover:text-white transition-colors duration-300"
-                >
-                  aryanpuri600@gmail.com
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-4 h-4 bg-purple-400 rounded-full"></div>
-                <span className="text-purple-300">
-                  NIT Hamirpur, Himachal Pradesh
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Code className="w-4 h-4 text-purple-400" />
-                <span className="text-purple-300">
-                  Available for opportunities
-                </span>
-              </div>
+          {/* Contact info */}
+          <div>
+            <h4 className="text-sm font-semibold text-white mb-4">Contact</h4>
+            <div className="space-y-2.5 text-sm text-slate-500">
+              <a href="mailto:aryanpuri600@gmail.com" className="block hover:text-white transition-colors">
+                aryanpuri600@gmail.com
+              </a>
+              <p>NIT Hamirpur, Himachal Pradesh</p>
+              <p className="text-violet-400 text-xs">Available for opportunities</p>
             </div>
           </div>
         </div>
 
-        <div className="animate-fade-in-delay-600 mt-12 pt-8 border-t border-purple-500/20">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-gray-400 text-sm">
-              <span>© 2025 Aryan Puri</span>
-              <span>•</span>
-              <div className="flex items-center gap-1">
-                <span>Built with</span>
-                <Heart className="w-4 h-4 text-red-500" />
-                <span>using Next.js</span>
-              </div>
+        {/* Bottom bar */}
+        <div className="mt-12 pt-8 border-t border-white/[0.04]">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+            <div className="flex items-center gap-1.5">
+              <span>&copy; 2025 Aryan Puri</span>
+              <span>&middot;</span>
+              <span className="flex items-center gap-1">
+                Built with <Heart className="w-3 h-3 text-red-500/60" /> using Next.js
+              </span>
             </div>
-            <div className="flex items-center gap-4 text-gray-400 text-sm">
+            <div className="flex items-center gap-3">
               <span>22BEC032</span>
-              <span>•</span>
+              <span>&middot;</span>
               <span>NIT Hamirpur</span>
             </div>
           </div>
