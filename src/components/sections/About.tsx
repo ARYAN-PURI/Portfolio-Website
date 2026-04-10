@@ -22,7 +22,7 @@ const About = () => {
         {/* Section header */}
         <div ref={headerRef} className={`text-center mb-16 reveal ${headerVisible ? 'visible' : ''}`}>
           <p className="text-sm font-medium tracking-widest uppercase text-violet-400 mb-3">About</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold theme-text mb-4">
             Building Tomorrow&apos;s{' '}
             <span className="gradient-text">Technology</span>
           </h2>
@@ -33,16 +33,16 @@ const About = () => {
           {/* Text content */}
           <div ref={textRef} className={`reveal-left ${textVisible ? 'visible' : ''}`}>
             <div className="space-y-5">
-              <p className="text-slate-300 leading-relaxed">
+              <p className="theme-text-secondary leading-relaxed">
                 I&apos;m a final-year Computer Science Engineering student at NIT Hamirpur with a passion for
                 creating innovative solutions that bridge the gap between cutting-edge research and practical applications.
               </p>
-              <p className="text-slate-400 leading-relaxed">
+              <p className="theme-text-muted leading-relaxed">
                 With a strong foundation in AI/ML, Computer Vision, and Full-Stack Development, I&apos;ve worked on
                 diverse projects ranging from autonomous vehicle perception systems to enterprise web applications.
                 My internship at DELL Technologies gave me hands-on experience in infrastructure automation and DevOps.
               </p>
-              <p className="text-slate-400 leading-relaxed">
+              <p className="theme-text-muted leading-relaxed">
                 I&apos;m always eager to learn new technologies and take on challenging projects that push the boundaries
                 of what&apos;s possible.
               </p>
@@ -54,13 +54,13 @@ const About = () => {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] card-hover"
+                className="p-6 rounded-2xl card-themed border card-hover"
               >
-                <div className="w-10 h-10 bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-xl flex items-center justify-center mb-4 border border-violet-500/10">
+                <div className="w-10 h-10 icon-container-themed rounded-xl flex items-center justify-center mb-4 border">
                   <stat.icon className="w-5 h-5 text-violet-400" />
                 </div>
-                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-sm text-slate-500">{stat.label}</div>
+                <div className="text-3xl font-bold theme-text mb-1">{stat.value}</div>
+                <div className="text-sm theme-text-faint">{stat.label}</div>
               </div>
             ))}
           </div>

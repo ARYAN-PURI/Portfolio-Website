@@ -35,7 +35,7 @@ const Experience = () => {
         {/* Header */}
         <div ref={headerRef} className={`text-center mb-16 reveal ${headerVisible ? 'visible' : ''}`}>
           <p className="text-sm font-medium tracking-widest uppercase text-violet-400 mb-3">Experience</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold theme-text mb-4">
             Professional <span className="gradient-text">Experience</span>
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full" />
@@ -43,21 +43,21 @@ const Experience = () => {
 
         {/* Experience card */}
         <div ref={cardRef} className={`max-w-4xl mx-auto reveal-scale ${cardVisible ? 'visible' : ''}`}>
-          <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] card-hover">
+          <div className="p-6 sm:p-8 rounded-2xl card-themed border card-hover">
             {/* Company header */}
             <div className="flex flex-col sm:flex-row gap-4 items-start mb-8">
-              <div className="w-14 h-14 bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-2xl flex items-center justify-center border border-violet-500/10 flex-shrink-0">
+              <div className="w-14 h-14 icon-container-themed rounded-2xl flex items-center justify-center border flex-shrink-0">
                 <Briefcase className="w-6 h-6 text-violet-400" />
               </div>
               <div className="flex-grow">
-                <h3 className="text-xl font-semibold text-white">{experience.title}</h3>
+                <h3 className="text-xl font-semibold theme-text">{experience.title}</h3>
                 <p className="text-violet-400 font-medium">{experience.company}</p>
-                <p className="text-sm text-slate-500">{experience.department}</p>
+                <p className="text-sm theme-text-faint">{experience.department}</p>
                 <div className="flex flex-wrap gap-3 mt-2">
-                  <span className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <span className="flex items-center gap-1.5 text-xs theme-text-faint">
                     <Calendar className="w-3 h-3" /> {experience.period}
                   </span>
-                  <span className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <span className="flex items-center gap-1.5 text-xs theme-text-faint">
                     <MapPin className="w-3 h-3" /> {experience.location}
                   </span>
                   <span className="flex items-center gap-1.5 text-xs text-emerald-400">
@@ -70,24 +70,24 @@ const Experience = () => {
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Responsibilities */}
               <div className="lg:col-span-2">
-                <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">Key Responsibilities</h4>
+                <h4 className="text-sm font-semibold theme-text-secondary uppercase tracking-wider mb-4">Key Responsibilities</h4>
                 <ul className="space-y-3">
                   {experience.responsibilities.map((resp, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 flex-shrink-0" />
-                      <span className="text-sm text-slate-400 leading-relaxed">{resp}</span>
+                      <span className="text-sm theme-text-muted leading-relaxed">{resp}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Technologies */}
                 <div className="mt-6">
-                  <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-3">Technologies</h4>
+                  <h4 className="text-sm font-semibold theme-text-secondary uppercase tracking-wider mb-3">Technologies</h4>
                   <div className="flex flex-wrap gap-2">
                     {experience.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 text-xs bg-white/[0.04] text-slate-400 rounded-lg border border-white/[0.06]"
+                        className="px-3 py-1 text-xs tag-themed rounded-lg border"
                       >
                         {tech}
                       </span>
@@ -98,16 +98,16 @@ const Experience = () => {
 
               {/* Highlights */}
               <div>
-                <h4 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4">Key Achievements</h4>
+                <h4 className="text-sm font-semibold theme-text-secondary uppercase tracking-wider mb-4">Key Achievements</h4>
                 <div className="space-y-3">
                   {experience.highlights.map((h, i) => (
                     <div
                       key={i}
-                      className="p-4 rounded-xl bg-emerald-500/[0.05] border border-emerald-500/10"
+                      className="p-4 rounded-xl highlight-themed border"
                     >
                       <div className="text-lg font-bold text-emerald-400 mb-0.5">{h.value}</div>
-                      <div className="text-xs font-medium text-slate-300">{h.label}</div>
-                      <div className="text-xs text-slate-500 mt-0.5">{h.desc}</div>
+                      <div className="text-xs font-medium theme-text-secondary">{h.label}</div>
+                      <div className="text-xs theme-text-faint mt-0.5">{h.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -118,7 +118,7 @@ const Experience = () => {
 
         {/* Bottom badge */}
         <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] text-sm text-slate-400">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-themed border text-sm">
             <ExternalLink className="w-4 h-4 text-violet-400" />
             Open to new opportunities and challenges
           </div>

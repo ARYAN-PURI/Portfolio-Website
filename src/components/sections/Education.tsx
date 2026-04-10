@@ -51,7 +51,7 @@ const Education = () => {
         {/* Header */}
         <div ref={headerRef} className={`text-center mb-16 reveal ${headerVisible ? 'visible' : ''}`}>
           <p className="text-sm font-medium tracking-widest uppercase text-violet-400 mb-3">Education</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold theme-text mb-4">
             Academic <span className="gradient-text">Journey</span>
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full" />
@@ -65,33 +65,36 @@ const Education = () => {
           {education.map((edu, index) => (
             <div key={index} className="relative pl-16 md:pl-20 pb-12 last:pb-0">
               {/* Timeline dot */}
-              <div className="absolute left-3 md:left-5 top-1 w-6 h-6 md:w-6 md:h-6 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center ring-4 ring-[#060918]">
+              <div
+                className="absolute left-3 md:left-5 top-1 w-6 h-6 md:w-6 md:h-6 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center ring-4"
+                style={{ '--tw-ring-color': 'var(--ring-timeline)' } as React.CSSProperties}
+              >
                 <edu.icon className="w-3 h-3 text-white" />
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] card-hover">
+              <div className="p-6 rounded-2xl card-themed border card-hover">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="px-3 py-1 text-xs font-medium bg-violet-500/10 text-violet-300 rounded-full border border-violet-500/10">
+                  <span className="px-3 py-1 text-xs font-medium score-badge rounded-full border">
                     {edu.score}
                   </span>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <div className="flex items-center gap-1.5 text-xs theme-text-faint">
                     <Calendar className="w-3 h-3" />
                     <span>{edu.period}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <div className="flex items-center gap-1.5 text-xs theme-text-faint">
                     <MapPin className="w-3 h-3" />
                     <span>{edu.location}</span>
                   </div>
                 </div>
 
-                <h3 className="text-lg font-semibold text-white mb-1">{edu.degree}</h3>
-                <p className="text-sm text-slate-400 mb-4">{edu.institution}</p>
+                <h3 className="text-lg font-semibold theme-text mb-1">{edu.degree}</h3>
+                <p className="text-sm theme-text-muted mb-4">{edu.institution}</p>
 
                 <div className="flex flex-wrap gap-2">
                   {edu.achievements.map((achievement, i) => (
                     <span
                       key={i}
-                      className="px-2.5 py-1 text-xs bg-white/[0.04] text-slate-400 rounded-lg border border-white/[0.06]"
+                      className="px-2.5 py-1 text-xs tag-themed rounded-lg border"
                     >
                       {achievement}
                     </span>
@@ -104,13 +107,13 @@ const Education = () => {
 
         {/* Key Coursework */}
         <div ref={coursesRef} className={`reveal ${coursesVisible ? 'visible' : ''}`}>
-          <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-            <h3 className="text-lg font-semibold text-white mb-6 text-center">Key Coursework</h3>
+          <div className="p-6 sm:p-8 rounded-2xl card-themed border">
+            <h3 className="text-lg font-semibold theme-text mb-6 text-center">Key Coursework</h3>
             <div className="flex flex-wrap gap-2 justify-center">
               {keyCourses.map((course, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1.5 text-sm bg-white/[0.04] text-slate-400 rounded-lg border border-white/[0.06] hover:border-violet-500/20 hover:text-slate-300 transition-all duration-300"
+                  className="px-3 py-1.5 text-sm tag-themed rounded-lg border transition-all duration-300"
                 >
                   {course}
                 </span>

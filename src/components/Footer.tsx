@@ -24,7 +24,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative border-t border-white/[0.06]">
+    <footer className="relative footer-themed border-t">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
@@ -34,11 +34,11 @@ const Footer = () => {
                 AP
               </div>
               <div>
-                <div className="text-white font-semibold">Aryan Puri</div>
-                <div className="text-xs text-slate-500">Computer Science Engineer</div>
+                <div className="theme-text font-semibold">Aryan Puri</div>
+                <div className="text-xs theme-text-faint">Computer Science Engineer</div>
               </div>
             </div>
-            <p className="text-sm text-slate-500 leading-relaxed mb-5">
+            <p className="text-sm theme-text-faint leading-relaxed mb-5">
               Passionate about building innovative solutions at the intersection of AI/ML,
               Computer Vision, and Full-Stack Development.
             </p>
@@ -49,7 +49,7 @@ const Footer = () => {
                   href={social.href}
                   target={social.label !== "Email" ? "_blank" : undefined}
                   rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
-                  className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.08] transition-all duration-300"
+                  className="p-2 rounded-lg card-themed border social-link transition-all duration-300"
                   aria-label={social.label}
                 >
                   <social.icon className="w-4 h-4" />
@@ -60,13 +60,13 @@ const Footer = () => {
 
           {/* Quick links */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">Quick Links</h4>
+            <h4 className="text-sm font-semibold theme-text mb-4">Quick Links</h4>
             <div className="space-y-2.5">
               {quickLinks.map((link) => (
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
-                  className="block text-sm text-slate-500 hover:text-white transition-colors duration-300"
+                  className="block text-sm theme-text-faint hover:theme-text transition-colors duration-300"
                 >
                   {link.name}
                 </button>
@@ -76,9 +76,9 @@ const Footer = () => {
 
           {/* Contact info */}
           <div>
-            <h4 className="text-sm font-semibold text-white mb-4">Contact</h4>
-            <div className="space-y-2.5 text-sm text-slate-500">
-              <a href="mailto:aryanpuri600@gmail.com" className="block hover:text-white transition-colors">
+            <h4 className="text-sm font-semibold theme-text mb-4">Contact</h4>
+            <div className="space-y-2.5 text-sm theme-text-faint">
+              <a href="mailto:aryanpuri600@gmail.com" className="block hover:theme-text transition-colors">
                 aryanpuri600@gmail.com
               </a>
               <p>NIT Hamirpur, Himachal Pradesh</p>
@@ -88,8 +88,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-white/[0.04]">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+        <div className="mt-12 pt-8 footer-bottom-border border-t">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs theme-text-faint">
             <div className="flex items-center gap-1.5">
               <span>&copy; 2025 Aryan Puri</span>
               <span>&middot;</span>

@@ -83,11 +83,11 @@ const Projects = () => {
         {/* Header */}
         <div ref={headerRef} className={`text-center mb-16 reveal ${headerVisible ? 'visible' : ''}`}>
           <p className="text-sm font-medium tracking-widest uppercase text-violet-400 mb-3">Projects</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold theme-text mb-4">
             Featured <span className="gradient-text">Work</span>
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full" />
-          <p className="text-slate-400 mt-6 max-w-xl mx-auto text-sm sm:text-base">
+          <p className="theme-text-muted mt-6 max-w-xl mx-auto text-sm sm:text-base">
             A selection of projects spanning AI/ML, Web Development, and Full-Stack applications
           </p>
         </div>
@@ -97,7 +97,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="group p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/[0.06] card-hover"
+              className="group p-6 sm:p-8 rounded-2xl card-themed border card-hover"
             >
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* Left: Icon + Meta */}
@@ -112,15 +112,15 @@ const Projects = () => {
 
                 {/* Right: Content */}
                 <div className="flex-grow min-w-0">
-                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-violet-200 transition-colors duration-300">
+                  <h3 className="text-xl font-semibold theme-text mb-2 group-hover:text-violet-500 transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed mb-4">{project.description}</p>
+                  <p className="text-sm theme-text-muted leading-relaxed mb-4">{project.description}</p>
 
                   {/* Technologies */}
                   <div className="flex flex-wrap gap-2 mb-5">
                     {project.technologies.map((tech, i) => (
-                      <span key={i} className="px-2.5 py-1 text-xs bg-white/[0.04] text-slate-400 rounded-lg border border-white/[0.06]">
+                      <span key={i} className="px-2.5 py-1 text-xs tag-themed rounded-lg border">
                         {tech}
                       </span>
                     ))}
@@ -129,21 +129,21 @@ const Projects = () => {
                   {/* Features + Metrics row */}
                   <div className="grid sm:grid-cols-2 gap-6 mb-5">
                     <div>
-                      <h4 className="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Key Features</h4>
+                      <h4 className="text-xs font-semibold theme-text-secondary uppercase tracking-wider mb-2">Key Features</h4>
                       <ul className="space-y-1.5">
                         {project.features.map((f, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <span className="w-1 h-1 rounded-full bg-violet-500 mt-2 flex-shrink-0" />
-                            <span className="text-xs text-slate-400 leading-relaxed">{f}</span>
+                            <span className="text-xs theme-text-muted leading-relaxed">{f}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div className="grid grid-cols-3 gap-2">
                       {project.metrics.map((m, i) => (
-                        <div key={i} className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.04] text-center">
-                          <div className="text-base font-bold text-white">{m.value}</div>
-                          <div className="text-[10px] text-slate-500 mt-0.5">{m.label}</div>
+                        <div key={i} className="p-3 rounded-xl metric-card border text-center">
+                          <div className="text-base font-bold theme-text">{m.value}</div>
+                          <div className="text-[10px] theme-text-faint mt-0.5">{m.label}</div>
                         </div>
                       ))}
                     </div>
@@ -156,7 +156,7 @@ const Projects = () => {
                         href={project.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium bg-white/[0.05] text-slate-300 rounded-lg border border-white/[0.08] hover:bg-white/[0.1] hover:text-white transition-all duration-300"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium code-link-themed rounded-lg border transition-all duration-300"
                       >
                         <Github className="w-3.5 h-3.5" /> Code
                       </a>
@@ -176,7 +176,7 @@ const Projects = () => {
                         href={project.links.kaggle}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium bg-blue-500/10 text-blue-300 rounded-lg border border-blue-500/10 hover:bg-blue-500/20 transition-all duration-300"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium kaggle-link-themed rounded-lg border transition-all duration-300"
                       >
                         <ExternalLink className="w-3.5 h-3.5" /> Kaggle
                       </a>
@@ -194,7 +194,7 @@ const Projects = () => {
             href="https://github.com/ARYAN-PURI/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] text-sm text-slate-400 hover:text-white hover:border-white/10 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-themed border text-sm transition-all duration-300"
           >
             <Github className="w-4 h-4 text-violet-400" />
             More projects on GitHub

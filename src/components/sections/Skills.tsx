@@ -64,11 +64,11 @@ const Skills = () => {
         {/* Header */}
         <div ref={headerRef} className={`text-center mb-16 reveal ${headerVisible ? 'visible' : ''}`}>
           <p className="text-sm font-medium tracking-widest uppercase text-violet-400 mb-3">Skills</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold theme-text mb-4">
             Technical <span className="gradient-text">Skills</span>
           </h2>
           <div className="w-16 h-0.5 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto rounded-full" />
-          <p className="text-slate-400 mt-6 max-w-xl mx-auto text-sm sm:text-base">
+          <p className="theme-text-muted mt-6 max-w-xl mx-auto text-sm sm:text-base">
             Comprehensive skill set spanning AI/ML, Full-Stack Development, and Infrastructure
           </p>
         </div>
@@ -78,23 +78,23 @@ const Skills = () => {
           {skillCategories.map((category, catIndex) => (
             <div
               key={catIndex}
-              className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] card-hover"
+              className="p-6 rounded-2xl card-themed border card-hover"
             >
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-xl flex items-center justify-center border border-violet-500/10">
+                <div className="w-9 h-9 icon-container-themed rounded-xl flex items-center justify-center border">
                   <category.icon className="w-4 h-4 text-violet-400" />
                 </div>
-                <h3 className="text-base font-semibold text-white">{category.title}</h3>
+                <h3 className="text-base font-semibold theme-text">{category.title}</h3>
               </div>
 
               <div className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
                     <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-sm text-slate-300">{skill.name}</span>
-                      <span className="text-xs text-slate-500">{skill.level}%</span>
+                      <span className="text-sm theme-text-secondary">{skill.name}</span>
+                      <span className="text-xs theme-text-faint">{skill.level}%</span>
                     </div>
-                    <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
+                    <div className="h-1.5 skill-bar-track rounded-full overflow-hidden">
                       <div
                         className="skill-bar h-full bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-full"
                         style={{ width: gridVisible ? `${skill.level}%` : '0%' }}
@@ -109,13 +109,13 @@ const Skills = () => {
 
         {/* Additional skills */}
         <div ref={extraRef} className={`reveal ${extraVisible ? 'visible' : ''}`}>
-          <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/[0.06]">
-            <h3 className="text-lg font-semibold text-white mb-6 text-center">Additional Skills</h3>
+          <div className="p-6 sm:p-8 rounded-2xl card-themed border">
+            <h3 className="text-lg font-semibold theme-text mb-6 text-center">Additional Skills</h3>
             <div className="flex flex-wrap gap-2 justify-center">
               {additionalSkills.map((skill, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1.5 text-sm bg-white/[0.04] text-slate-400 rounded-lg border border-white/[0.06] hover:border-violet-500/20 hover:text-slate-300 transition-all duration-300"
+                  className="px-3 py-1.5 text-sm tag-themed rounded-lg border transition-all duration-300"
                 >
                   {skill}
                 </span>
@@ -126,7 +126,7 @@ const Skills = () => {
 
         {/* Bottom badge */}
         <div className="text-center mt-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/[0.06] text-sm text-slate-400">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full badge-themed border text-sm">
             <Cpu className="w-4 h-4 text-violet-400" />
             Continuously learning and expanding skill set
           </div>

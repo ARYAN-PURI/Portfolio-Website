@@ -1,3 +1,5 @@
+'use client';
+
 import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import Education from '@/components/sections/Education';
@@ -10,7 +12,7 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#060918] text-slate-100">
+    <main className="min-h-screen theme-bg theme-text-secondary">
       <Navigation />
       <Hero />
       <About />

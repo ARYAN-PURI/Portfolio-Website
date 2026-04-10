@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,9 +55,10 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 animate-slide-down transition-all duration-300 ${
         scrolled
-          ? 'glass shadow-lg shadow-black/10'
+          ? 'glass shadow-lg'
           : 'bg-transparent'
       }`}
+      style={{ boxShadow: scrolled ? 'var(--shadow-nav)' : 'none' }}
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
@@ -68,7 +70,7 @@ const Navigation = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center text-white font-bold text-sm transition-transform duration-300 group-hover:scale-110">
               AP
             </div>
-            <span className="text-white font-semibold text-base hidden sm:inline tracking-tight">
+            <span className="theme-text font-semibold text-base hidden sm:inline tracking-tight">
               Aryan Puri
             </span>
           </button>
@@ -81,8 +83,8 @@ const Navigation = () => {
                 onClick={() => handleNavClick(item.href)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-300 ${
                   activeSection === item.href.slice(1)
-                    ? 'text-white bg-white/10'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
+                    ? 'nav-link-active'
+                    : 'nav-link'
                 }`}
               >
                 {item.name}
@@ -90,15 +92,16 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Desktop socials */}
+          {/* Desktop socials + theme toggle */}
           <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
             {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
                 target={social.label !== "Email" ? "_blank" : undefined}
                 rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
-                className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-300"
+                className="p-2 social-link rounded-lg transition-all duration-300"
                 aria-label={social.label}
               >
                 <social.icon className="w-4 h-4" />
@@ -106,14 +109,17 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors duration-300"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile: theme toggle + menu toggle */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 social-link rounded-lg transition-colors duration-300"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -130,8 +136,8 @@ const Navigation = () => {
               onClick={() => handleNavClick(item.href)}
               className={`block w-full text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
                 activeSection === item.href.slice(1)
-                  ? 'text-white bg-white/10'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  ? 'nav-link-active'
+                  : 'nav-link'
               }`}
               style={{
                 opacity: isOpen ? 1 : 0,
@@ -142,14 +148,14 @@ const Navigation = () => {
               {item.name}
             </button>
           ))}
-          <div className="flex gap-2 pt-3 border-t border-white/5">
+          <div className="flex gap-2 pt-3 mobile-menu-border border-t">
             {socialLinks.map((social, index) => (
               <a
                 key={social.label}
                 href={social.href}
                 target={social.label !== "Email" ? "_blank" : undefined}
                 rel={social.label !== "Email" ? "noopener noreferrer" : undefined}
-                className="p-2.5 text-slate-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-300"
+                className="p-2.5 social-link rounded-lg transition-all duration-300"
                 style={{
                   opacity: isOpen ? 1 : 0,
                   transition: `opacity 0.3s ease ${index * 0.05 + 0.3}s`

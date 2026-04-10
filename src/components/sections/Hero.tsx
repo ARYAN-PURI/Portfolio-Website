@@ -17,16 +17,16 @@ const Hero = () => {
       <GradientBackground />
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Hero gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-violet-950/20 via-transparent to-[#060918]" />
+        <div className="absolute inset-0 hero-overlay" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           {/* Status badge */}
           <div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full hero-status-badge mb-8"
             style={{ opacity: 0, animation: 'hero-text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards' }}
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-sm text-slate-300">Available for opportunities</span>
+            <span className="text-sm theme-text-tertiary">Available for opportunities</span>
           </div>
 
           {/* Name */}
@@ -34,13 +34,13 @@ const Hero = () => {
             className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4"
             style={{ opacity: 0, animation: 'hero-text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards' }}
           >
-            <span className="text-white">Aryan</span>{' '}
+            <span className="theme-text">Aryan</span>{' '}
             <span className="gradient-text">Puri</span>
           </h1>
 
           {/* Title */}
           <p
-            className="text-lg sm:text-xl md:text-2xl text-slate-400 font-light mb-3"
+            className="text-lg sm:text-xl md:text-2xl theme-text-muted font-light mb-3"
             style={{ opacity: 0, animation: 'hero-text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards' }}
           >
             Computer Science Engineer
@@ -48,7 +48,7 @@ const Hero = () => {
 
           {/* Subtitle */}
           <p
-            className="text-sm sm:text-base text-slate-500 mb-8"
+            className="text-sm sm:text-base theme-text-faint mb-8"
             style={{ opacity: 0, animation: 'hero-text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards' }}
           >
             NIT Hamirpur &middot; 22BEC032
@@ -56,7 +56,7 @@ const Hero = () => {
 
           {/* Description */}
           <p
-            className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-base sm:text-lg theme-text-muted max-w-2xl mx-auto mb-10 leading-relaxed"
             style={{ opacity: 0, animation: 'hero-text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards' }}
           >
             Building innovative solutions at the intersection of AI/ML, Computer Vision, and Full-Stack Development.
@@ -75,7 +75,7 @@ const Hero = () => {
             </a>
             <a
               href="#projects"
-              className="group px-8 py-3 border border-white/15 text-slate-300 rounded-full font-medium text-sm sm:text-base transition-all duration-300 hover:border-white/30 hover:text-white hover:bg-white/5"
+              className="group px-8 py-3 btn-outline-themed border rounded-full font-medium text-sm sm:text-base transition-all duration-300"
             >
               View Projects
             </a>
@@ -93,7 +93,7 @@ const Hero = () => {
                 target={social.label !== "Email" && social.label !== "Resume" ? "_blank" : undefined}
                 rel={social.label !== "Email" && social.label !== "Resume" ? "noopener noreferrer" : undefined}
                 download={social.label === "Resume" ? true : undefined}
-                className="p-3 rounded-xl bg-white/5 border border-white/5 text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/10 transition-all duration-300"
+                className="p-3 rounded-xl hero-social-btn transition-all duration-300"
                 aria-label={social.label}
               >
                 <social.icon className="w-5 h-5" />
@@ -106,7 +106,7 @@ const Hero = () => {
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
           <a
             href="#about"
-            className="flex flex-col items-center gap-2 text-slate-500 hover:text-slate-300 transition-colors"
+            className="flex flex-col items-center gap-2 theme-text-faint hover:theme-text-tertiary transition-colors"
             style={{ animation: 'scroll-hint 2.5s ease-in-out infinite' }}
           >
             <span className="text-xs font-medium tracking-widest uppercase">Scroll</span>
