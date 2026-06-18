@@ -46,14 +46,6 @@ const Hero = () => {
             Computer Science Engineer
           </p>
 
-          {/* Subtitle */}
-          <p
-            className="text-sm sm:text-base theme-text-faint mb-8"
-            style={{ opacity: 0, animation: 'hero-text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards' }}
-          >
-            NIT Hamirpur &middot; 22BEC032
-          </p>
-
           {/* Description */}
           <p
             className="text-base sm:text-lg theme-text-muted max-w-2xl mx-auto mb-10 leading-relaxed"

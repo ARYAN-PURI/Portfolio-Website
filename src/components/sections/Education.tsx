@@ -12,10 +12,10 @@ const Education = () => {
     {
       degree: "B.Tech in Computer Science and Engineering",
       institution: "National Institute of Technology, Hamirpur",
-      period: "2022 - Present",
+      period: "Nov 2022 – May 2026",
       location: "Hamirpur, HP",
-      score: "CGPA: 9.96",
-      achievements: ["Batch Topper", "Dean's List", "Academic Excellence Award"],
+      score: "CGPA: 9.97",
+      achievements: ["Ranked 1st in CSE Batch", "Batch Topper", "Dean's List", "Academic Excellence Award"],
       icon: GraduationCap
     },
     {

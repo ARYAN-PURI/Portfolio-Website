@@ -10,9 +10,9 @@ const About = () => {
 
   const stats = [
     { icon: Code, label: "Projects Completed", value: "10+" },
-    { icon: Cpu, label: "CGPA", value: "9.96" },
+    { icon: Cpu, label: "CGPA", value: "9.97" },
     { icon: Brain, label: "AI/ML Models", value: "5+" },
-    { icon: Globe, label: "Internships", value: "1" }
+    { icon: Globe, label: "Internships", value: "2" }
   ];
 
   return (
@@ -40,7 +40,7 @@ const About = () => {
               <p className="theme-text-muted leading-relaxed">
                 With a strong foundation in AI/ML, Computer Vision, and Full-Stack Development, I&apos;ve worked on
                 diverse projects ranging from autonomous vehicle perception systems to enterprise web applications.
-                My internship at DELL Technologies gave me hands-on experience in infrastructure automation and DevOps.
+                My two internships at Dell Technologies gave me hands-on experience in infrastructure automation, DevOps, OpenShift-based virtualization integrations, and REST API development at enterprise scale.
               </p>
               <p className="theme-text-muted leading-relaxed">
                 I&apos;m always eager to learn new technologies and take on challenging projects that push the boundaries
